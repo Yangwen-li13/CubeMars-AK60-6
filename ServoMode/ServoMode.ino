@@ -106,7 +106,7 @@ void comm_can_set_origin(uint8_t controller_id, uint8_t set_origin_mode) {
 void comm_can_set_pos_spd(uint8_t controller_id, float pos, int16_t spd, int16_t RPA) {
   int32_t send_index = 0;
   int16_t send_index1 = 0;
-  uint8_t buffer[4];
+  uint8_t buffer[8];
   buffer_append_int32(buffer, (int32_t)(pos * 10000.0), &send_index);
   buffer_append_int16(buffer, spd, &send_index1);
   buffer_append_int16(buffer, RPA, &send_index1);
