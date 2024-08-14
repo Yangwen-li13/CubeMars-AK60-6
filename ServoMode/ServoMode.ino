@@ -108,8 +108,13 @@ void comm_can_set_pos_spd(uint8_t controller_id, float pos, int16_t spd, int16_t
   int16_t send_index1 = 4;
   uint8_t buffer[8];
   buffer_append_int32(buffer, (int32_t)(pos * 10000.0), &send_index);
+  //Check manual from CubicMotors to divide spd and RPA to 10.0
+  //  buffer_append_int16(buffer, spd/10.0, &send_index1);  
+  //buffer_append_int16(buffer, RPA/10.0, &send_index1);
   buffer_append_int16(buffer, spd, &send_index1);
   buffer_append_int16(buffer, RPA, &send_index1);
+  
+  
   comm_can_transmit_eid(canId(controller_id, AKMode::AK_POSITION_VELOCITY), buffer, send_index);
 }
 
