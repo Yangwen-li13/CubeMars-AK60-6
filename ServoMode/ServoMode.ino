@@ -100,6 +100,7 @@ void comm_can_set_pos(uint8_t controller_id, float pos) {
 void comm_can_set_origin(uint8_t controller_id, uint8_t set_origin_mode) {
   int32_t send_index = 0;
   uint8_t buffer[4];
+  buffer_append_int32(buffer, (int32_t)set_origin_mode, &send_index);
   comm_can_transmit_eid(canId(controller_id, AKMode::AK_ORIGIN), buffer, send_index);
 }
 
